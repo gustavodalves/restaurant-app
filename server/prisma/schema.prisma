@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+model OrderStatus {
+  id    String @id @default(uuid())
+  title String @unique
+
+  Order Order[]
+
+  @@map("order_status")
+}
+
+model Category {
+  id    String  @id @default(uuid())
+  title String
+  Plate Plate[]
+
+  @@map("categories")
+}
+
+model Plate {
+  id          String   @id @default(uuid())
+  name        String
+  price       Float
+  description String?
+  categoryId  String   @map("category_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  category   Category     @relation(fields: [categoryId], references: [id])
+  OrderPlate OrderPlate[]
+
+  @@map("plates")
+}
+
+model Order {
+  id            String   @id @default(uuid())
+  orderStatusId String   @map("order_status_id")
+  reatedAt      DateTime @default(now()) @map("created_at")
+  isClosed      Boolean  @default(false)
+
+  OrderPlate   OrderPlate[]
+  ordersStatus OrderStatus  @relation(fields: [orderStatusId], references: [id])
+
+  @@map("orders")
+}
+
+model OrderPlate {
+  id      String @id @default(uuid())
+  amount  Int    @default(1)
+  plateId String @map("plate_id")
+  orderId String @map("order_id")
+
+  order Order @relation(fields: [orderId], references: [id])
+  plate Plate @relation(fields: [plateId], references: [id])
+
+  @@map("orders_plates")
+}
