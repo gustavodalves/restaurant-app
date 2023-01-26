@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { OrdersController } from "../../../controllers/orders.controller";
+import { Router } from 'express';
+import { OrdersController } from '../../../controllers/orders.controller';
 
 export class OrderRouter {
     private controller = new OrdersController();
@@ -8,6 +8,6 @@ export class OrderRouter {
     ) {}
 
     init() {
-        this.router.post('/order', this.controller.create)
+        this.router.post('/order', this.controller.create);
     }
 }

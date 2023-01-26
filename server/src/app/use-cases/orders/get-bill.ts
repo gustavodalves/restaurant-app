@@ -1,4 +1,4 @@
-import { prisma } from "../../../infra/database/prisma/prisma-client";
+import { prisma } from '../../../infra/database/prisma/prisma-client';
 
 interface GetBillRequest {
     orderId: string;
@@ -11,7 +11,7 @@ export class GetBill {
         try {
             const bill = await prisma.order.findUniqueOrThrow({
                 where: {
-                    id: orderId, 
+                    id: orderId,
                 },
                 include: {
                     OrderPlate: {
@@ -21,10 +21,10 @@ export class GetBill {
                         }
                     }
                 }
-            })
+            });
             return bill;
         } catch {
-            throw new Error('Order not founded')
+            throw new Error('Order not founded');
         }
 
     }

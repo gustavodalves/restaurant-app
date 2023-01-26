@@ -1,5 +1,5 @@
-import { prisma } from "../../../infra/database/prisma/prisma-client";
-import { OrderRouter } from "../../../infra/http/routes/protected/orders/orders.router";
+import { prisma } from '../../../infra/database/prisma/prisma-client';
+import { OrderRouter } from '../../../infra/http/routes/protected/orders/orders.router';
 
 export interface FinishOrderRequest {
     orderId: string;
@@ -14,9 +14,9 @@ export class FinishOrder {
             data: {
                 isClosed: true,
             },
-        })
+        });
 
-        return order
+        return order;
     }
 
 }

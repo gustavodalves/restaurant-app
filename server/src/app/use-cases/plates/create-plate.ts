@@ -1,4 +1,4 @@
-import { prisma } from "../../../infra/database/prisma/prisma-client";
+import { prisma } from '../../../infra/database/prisma/prisma-client';
 
 export interface CreatePlateRequest {
     name: string;
@@ -24,7 +24,7 @@ export class CreatePlate {
             include: {
                 category: true,
             },
-        })
+        });
 
         return {
             ...plate,

@@ -1,4 +1,4 @@
-import { prisma } from "../../../infra/database/prisma/prisma-client";
+import { prisma } from '../../../infra/database/prisma/prisma-client';
 
 export interface UpdatePlateRequest {
     name?: string;
@@ -17,7 +17,7 @@ export class UpdatePlate {
                 id: plateId,
             },
             data: request,
-        })
+        });
 
         return plate;
     }

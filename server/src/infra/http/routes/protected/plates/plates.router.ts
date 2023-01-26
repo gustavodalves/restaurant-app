@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { PlatesController } from "../../../controllers/plates.controller";
+import { Router } from 'express';
+import { PlatesController } from '../../../controllers/plates.controller';
 
 export class PlatesRouter {
     private controller = new PlatesController();
@@ -8,7 +8,7 @@ export class PlatesRouter {
     ) {}
 
     init() {
-        this.router.post('/', this.controller.create)
-        this.router.put('/:id', this.controller.update)
+        this.router.post('/', this.controller.create);
+        this.router.put('/:id', this.controller.update);
     }
 }

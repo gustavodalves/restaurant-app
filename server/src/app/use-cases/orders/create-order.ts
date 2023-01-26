@@ -1,4 +1,4 @@
-import { prisma } from "../../../infra/database/prisma/prisma-client";
+import { prisma } from '../../../infra/database/prisma/prisma-client';
 
 export interface CreateOrderRequest {
     platesIds: string[]
@@ -13,7 +13,7 @@ export class CreateOrder {
                 plateId: key,
                 amount: +value!
             }
-        ))
+        ));
 
         const order = await prisma.order.create({
             data: {
@@ -40,7 +40,7 @@ export class CreateOrder {
                 },
                 ordersStatus: true,
             },
-        })
+        });
 
         return order;
     }
